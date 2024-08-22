@@ -10,12 +10,14 @@ class Game:
         self.screen=pygame.display.set_mode((640,480))
         self.display=pygame.Surface((640,480))
         self.clock=pygame.time.Clock()
+        self.clicking=[False,False] #left is mouse left click
+        self.key_set=set()
 
     def run(self):
         print('game has started')
         while True:
             self.display.fill((0,0,0,0))
-            monitor_input()
+            monitor_input(self)
             self.screen.blit(pygame.transform.scale(self.display,self.screen.get_size()),(0,0))
             pygame.display.update()
             self.clock.tick(60)
