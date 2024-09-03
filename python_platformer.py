@@ -1,6 +1,7 @@
 import sys
 import pygame 
-from scripts.utils import monitor_input
+from scripts.utils import monitor_input,load_images
+from scripts.Tilemap import Tilemap
 RENDER_SCALE=1.0
 
 class Game:
@@ -12,6 +13,14 @@ class Game:
         self.clock=pygame.time.Clock()
         self.clicking=[False,False] #left is mouse left click
         self.key_set=set()
+        self.assets={
+                     'platforms':load_images('platforms')
+                    }
+        self.tile_map=Tilemap(self,tile_size=16)
+        try:
+            self.tilemap.load('map.json')
+        except:
+            pass
 
     def run(self):
         print('game has started')
